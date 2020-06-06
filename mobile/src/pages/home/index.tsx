@@ -31,7 +31,7 @@ const Home = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-      axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
+      axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderby=nome').then(response => {
           if (response) {
               const ufInitials = response.data.map(uf => ({
                 label: uf.nome, 
@@ -94,7 +94,7 @@ const Home = () => {
 
             <RNPickerSelect
               placeholder={{
-                label: 'Selecione uma UF',
+                label: 'Selecione um estado',
                 value: '',
                 color: '#9EA0A4',
               }}
