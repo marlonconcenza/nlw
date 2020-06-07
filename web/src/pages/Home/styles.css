@@ -29,7 +29,7 @@
   }
   
   #page-home .content main h1 {
-    font-size: 54px;
+    font-size: 40px;
     color: var(--title-color);
   }
   
@@ -41,25 +41,22 @@
   
   #page-home .content main a {
     width: 100%;
-    max-width: 360px;
-    height: 72px;
+    max-width: 310px;
+    height: 62px;
     background: var(--primary-color);
     border-radius: 8px;
     text-decoration: none;
-  
     display: flex;
     align-items: center;
     overflow: hidden;
-  
     margin-top: 40px;
   }
   
   #page-home .content main a span {
     display: block;
     background: rgba(0, 0, 0, 0.08);
-    width: 72px;
+    width: 52px;
     height: 72px;
-  
     display: flex;
     align-items: center;
     justify-content: center;

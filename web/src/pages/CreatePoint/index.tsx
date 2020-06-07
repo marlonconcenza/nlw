@@ -4,10 +4,11 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 import axios from 'axios';
-import api from '../../services/api';
 
+import api from '../../services/api';
 import './styles.css';
 import Dropzone from '../../components/dropzone';
+import SuccessModal from '../../components/successModal';
 import logo from '../../assets/logo.svg';
 
 interface Item {
@@ -30,6 +31,7 @@ const CreatePoint = () => {
     const [ items, setItems ] = useState<Item[]>([]);
     const [ ufs, setUFs ] = useState<string[]>([]);
     const [ cities, setCities ] = useState<string[]>([]);
+    const [success, setSuccess] = useState(false);
 
     const [ initialPosition, setInitialPosition ] = useState<[number, number]>([0, 0]);
 
@@ -136,6 +138,11 @@ const CreatePoint = () => {
             return false;
         }
 
+        if (!selectedFile) {
+            alert('Selecione uma imagem para o estabelecimento.');
+            return false;
+        }
+
         const data = new FormData();
 
         data.append('name', name);
@@ -151,10 +158,21 @@ const CreatePoint = () => {
             data.append('image', selectedFile);
         }
 
-        await api.post('points', data);
+        await api
+            .post('points', data)
+            .then((success) => {
+                setSuccess(true);
+                setTimeout(() => {
+                    setSuccess(false);
+                    handleCloseSuccess();
+                }, 3000);
+            })
+            .catch(() => {
+                alert('Falha ao criar o ponto de coleta.');
+            });
+    }
 
-        alert('Ponto de coleta salvo com sucesso!!');
-
+    function handleCloseSuccess() {
         history.push('/');
     }
 
@@ -261,6 +279,13 @@ const CreatePoint = () => {
                 </fieldset>
                 <button type="submit">Cadastro ponto de coleta</button>
             </form>
+            {success && (
+                <SuccessModal
+                show={success}
+                message="Cadastro concluído!"
+                onCloseAction={handleCloseSuccess}
+                />
+            )}
         </div>
     );
 }
