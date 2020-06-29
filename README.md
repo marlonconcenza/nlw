@@ -7,7 +7,7 @@
 
 ## Sobre este projeto
 
-Este projeto contruído durante a Next Level Week da Rocketseat
+Este projeto foi contruído durante a Next Level Week da Rocketseat
 
 
 ## Tecnologias utilizadas
