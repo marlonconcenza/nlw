@@ -50,7 +50,7 @@ const Detail = () => {
     }
 
     function handleWhatsapp() {
-      Linking.openURL(`whatsapp://send?phone=+55${data.whatsapp}&text=Tenha interesse sobre coleta de resíduos.`);
+      Linking.openURL(`whatsapp://send?phone=+55${data.whatsapp}&text=Tenho interesse sobre coleta de resíduos.`);
     }
 
     if (!data.name) {

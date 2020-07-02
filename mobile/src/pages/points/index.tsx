@@ -56,6 +56,8 @@ const Point = () => {
 
       const location = await Location.getCurrentPositionAsync();
 
+      console.log('coordenadas', location.coords);
+
       const { latitude, longitude } = location.coords;
 
       setInitialPosition([
@@ -116,8 +118,8 @@ const Point = () => {
                     <MapView 
                       style={styles.map}
                       initialRegion={{
-                        latitude: initialPosition[0],
-                        longitude: initialPosition[1],
+                        latitude: Number(initialPosition[0]),
+                        longitude: Number(initialPosition[1]),
                         latitudeDelta: 0.014,
                         longitudeDelta: 0.014
                       }}>
@@ -127,8 +129,8 @@ const Point = () => {
                             onPress={() => handleNavigateToDetail(point.id)}
                             style={styles.mapMarker}
                             coordinate={{
-                              latitude: point.latitude,
-                              longitude: point.longitude
+                              latitude: Number(point.latitude),
+                              longitude: Number(point.longitude)
                             }}>
                               <View style={styles.mapMarkerContainer}>
                                   <Image style={styles.mapMarkerImage} source={{ uri: point.image }}></Image>
